@@ -1,0 +1,67 @@
+{% extends 'compny/dashboard/base.html' %}
+{% load static %}
+{% block NewContent %}
+  <title>View Products</title>
+
+
+<div class='row'>
+<div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Product  Details</h4>
+    
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Sr No.</th>
+                          <th>Product Name</th>
+                          <th>Product Price</th>
+                          <th>Product QTY</th>
+                          <th>Product Pic</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in prod reversed %}
+                      
+                        <tr>
+                           <td>{{ forloop.counter }}</td>
+                           <td>{{ i.proName }}</td>
+                           <td>{{ i.proPrice }}</td>
+                           <td>{{ i.proQnty }}</td>
+                           <td>
+                           {% if i.proImg  %}
+                           <img src='{{ i.proImg.url }}' width='150px'>
+                           
+                           {% endif %}
+                           </td>
+                           <td><a href='{% url "deleteproduct" i.id %}' class='badge badge-danger'>Delete</a>
+                           <a href='{% url "updateproduct" i.id %}' class='badge badge-info'>Update</a></td>
+                        </tr>
+
+                        {% endfor %}
+                        
+                      </tbody>
+                    </table>
+                    {% if messages %}
+                               {% for message in messages %}
+                                {% if message.tags == 'error' %} 
+                                       <p style='color:red;'>{{ message }}</p>     
+                                {% elif message.tags == 'info' %}             
+                                          <script>
+                                             window.onload = function() {
+                                              alert('{{ message }}')
+                                             }
+                                          </script>
+                                {% endif %}
+                                {% endfor %}
+                            {% endif %} 
+                  </div>
+                </div>
+              </div>
+            </div>
+</div>
+
+
+{% endblock NewContent %}

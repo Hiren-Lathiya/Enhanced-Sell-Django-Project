@@ -1,0 +1,56 @@
+{% extends 'compny/dashboard/base.html' %}
+{% load static %}
+{% block NewContent %}
+
+<title>View Orders</title>
+
+<div class='row'>
+<div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Order Details</h4>
+    
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Sr No.</th>
+                          <th>Customer Name</th>
+                          <th>Product Name</th>
+                          <th>Available QTY</th>
+                          <th>Required QTY</th>
+                          <th>Total Price</th>
+                          <th>Order Date</th>
+                          <th>Accept/Denay</th>
+                          
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in cordr reversed %}
+                      
+                        <tr>
+                           <td>{{ forloop.counter }}</td>
+                           <td>{{ i.cust.custName }}</td>
+                           <td>{{ i.prod.proName }}</td>
+                           <td>{{ i.prod.proQnty }}</td>                           
+                           <td>{{ i.qty }}</td>
+                           <td>{{ i.total_price }}</td>
+                           <td>{{ i.order_date }}</td>
+                          
+                           <td><a href='{% url "acceptorder" i.id %}' class='badge badge-info'>Accept</a>
+                           <a href='{% url "denayorder" i.id %}' class='badge badge-danger '>Denay</a></td>
+                        </tr>
+
+                        {% endfor %}
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+</div>
+
+
+{% endblock NewContent %}

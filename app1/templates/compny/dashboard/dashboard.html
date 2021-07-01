@@ -1,0 +1,58 @@
+{% extends 'compny/dashboard/base.html' %}
+{% load static %}
+{% block NewContent %}
+  <title>User Dashboard</title>
+
+
+<div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Recent Orders</h4>
+    
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Sr No.</th>
+                          <th>Customer Name</th>
+                          <th>Product Name</th>
+                          <th>Available QTY</th>
+                          <th>Required QTY</th>
+                          <th>Total Price</th>
+                          <th>Order Date</th>                          
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in ord reversed %}
+                      
+                        <tr>
+                           <td>{{ forloop.counter }}</td>
+                           <td>{{ i.cust.custName }}</td>
+                           <td>{{ i.prod.proName }}</td>
+                           <td>{{ i.prod.proQnty }}</td>                           
+                           <td>{{ i.qty }}</td>
+                           <td>{{ i.total_price }}</td>
+                           <td>{{ i.order_date }}</td>
+                          </tr>
+
+                        {% endfor %}
+                        
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+</div>
+{% if messages %}
+ {% for message in messages %}
+                                          <script>
+                                             window.onload = function() {
+                                              alert('{{ message }}')
+                                             }
+                                          </script>
+  {% endfor %}
+ {% endif %} 
+
+{% endblock NewContent %}

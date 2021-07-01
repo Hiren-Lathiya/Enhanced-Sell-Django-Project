@@ -1,0 +1,60 @@
+{% extends 'compny/dashboard/base.html' %}
+{% load static %}
+{% block NewContent %}
+  <title>Add Product</title>
+
+<div class='row'>
+<div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add New Products</h4>
+                  <p class="card-description">
+                    Product Details
+                  </p>
+                  <form class="forms-sample" method="POST" enctype='multipart/form-data'>
+                  {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleInputName1">Name:</label>
+                      <input type="text" class="form-control" name='nm1' id="exampleInputName1" placeholder="product Name">
+                    </div>
+
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail3">Price:</label>
+                      <input type="number" class="form-control" name='prc1'  id="exampleInputEmail3" placeholder="product price">
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="exampleInputEmail3">QTY:</label>
+                      <input type="number" class="form-control" name='qt1'  id="exampleInputEmail3" placeholder="quantity">
+                    </div>
+
+                     <div class="form-group">
+                      <label for="exampleInputEmail3">Image:</label>
+                      <input type="file" class="form-control" name='img1' Required id="exampleInputEmail3" placeholder="photo">
+                    </div>
+                  
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                     {% if messages %}
+                               {% for message in messages %}
+                                {% if message.tags == 'error' %} 
+                                       <p style='color:red;'>{{ message }}</p>     
+                                {% elif message.tags == 'info' %}             
+                                          <script>
+                                             window.onload = function() {
+                                              alert('{{ message }}')
+                                             }
+                                          </script>
+                                {% endif %}
+                                {% endfor %}
+                            {% endif %} 
+                  </form>
+                </div>
+              </div>
+            </div>
+            
+</div>
+
+
+{% endblock NewContent %}

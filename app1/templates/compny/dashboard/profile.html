@@ -1,0 +1,73 @@
+{% extends 'compny/dashboard/base.html' %}
+{% load static %}
+{% block NewContent %}
+  <title>Profile</title>
+
+<div class='row'>
+<div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Update Profile</h4>
+                  <p class="card-description">
+                    Basic Details
+                  </p>
+                  <form class="forms-sample" method="POST" enctype='multipart/form-data'>
+                  {% csrf_token %}
+                    <div class="form-group">
+                      <label for="exampleInputName1">Company Name:</label>
+                      <input type="text" class="form-control" name='nm1' value="{{ USERS.name }}" id="exampleInputName1" placeholder="Name">
+                    </div>
+
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail3">Company Email address:</label>
+                      <input type="email" class="form-control" name='em1' value="{{ USERS.email }}" id="exampleInputEmail3" placeholder="Email">
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="exampleInputEmail3">Company Contact Number:</label>
+                      <input type="text" class="form-control" name='con1' value="{{ USERS.number }}" id="exampleInputEmail3" placeholder="Contact Numbar">
+                    </div>
+                    
+                    <div class="form-group">
+                      <label>File upload</label>
+                      {% if USERS.profile  %}
+                      <br>
+                      <img src="{{USERS.profile.url}}" width='200px'>
+                       {% endif %}
+                      <input type="file" name="img1" class="form-control">
+                     
+                    </div>
+
+
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Company Address</label>
+                      <textarea class="form-control" name='add1' id="exampleTextarea1" rows="4">{{ USERS.address }} </textarea>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputPassword4">Password</label>
+                      <input type="text" class="form-control" name='pass1' value="{{ USERS.password }}" id="exampleInputPassword4" placeholder="Password">
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                            <button class="btn btn-light">Cancel</button>
+                     {% if messages %}
+                               {% for message in messages %}
+                               <script>
+                                             window.onload = function() {
+                                              alert('{{ message }}')
+                                             }
+                                </script>
+                                {% endfor %}
+                    {% endif %} 
+                  </form>
+                </div>
+              </div>
+            </div>
+            
+</div>
+
+
+{% endblock NewContent %}

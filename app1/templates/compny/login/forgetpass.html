@@ -1,0 +1,62 @@
+<!--<form method="POST">
+{% csrf_token %}
+enter your mail id
+<br>
+<input type="email" name='em' placeholder="Enter Your email">
+<br>
+<input type="submit" value='check'>
+</form>
+-->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>forget password</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'compny/login/fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'compny/login/css/style.css' %}">
+</head>
+<body>
+
+    <div class="main">
+
+        <!-- Sign up form -->
+        <section class="signup">
+            <div class="container">
+                <div class="signup-content">
+                    <div class="signup-form">
+                        <h2 class="form-title">Forget Password</h2>
+                        <form method="POST" class="register-form" id="register-form">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="email" name="em" id="email" placeholder="Your Email"/>
+                            </div>
+                              {% if messages %}
+                               {% for message in messages %}
+                                       <p style='color:red;'>{{ message }}</p>     
+                                {% endfor %}
+                            {% endif %} 
+                             
+
+                            <div class="form-group form-button">
+                                <input type="submit" name="signup" id="signup" class="form-submit" value="Check"/>
+                            </div>
+                        </form>
+                    
+                </div>
+            </div>
+        </section>
+
+     
+
+    <!-- JS -->
+    <script src="{% static 'compny/login/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'compny/login/js/main.js' %}"></script>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
